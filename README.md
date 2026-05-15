@@ -122,6 +122,6 @@ VITE_ML_URL=http://localhost:8000
 ---
 
 ## 🎓 Project Info
-- **Type**: Final Year B.Tech / MCA Project
+
 - **Domain**: Machine Learning + Full Stack Web Dev
 - **Dataset**: [Kaggle Fertilizer Prediction](https://www.kaggle.com/datasets/gdabhishek/fertilizer-prediction)
