@@ -1,0 +1,15 @@
+node_modules/
+.env
+__pycache__/
+*.pyc
+*.pyo
+*.pkl
+*.h5
+models/
+venv/
+env/
+dist/
+build/
+.DS_Store
+*.egg-info/
+.ipynb_checkpoints/

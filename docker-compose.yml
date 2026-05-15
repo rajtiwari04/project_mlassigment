@@ -1,0 +1,44 @@
+version: "3.9"
+
+services:
+  ml-api:
+    build: ./ml-api
+    container_name: soil_ml_api
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./ml-api:/app
+    environment:
+      - FLASK_ENV=development
+    command: python app.py
+
+  server:
+    build: ./server
+    container_name: soil_node_server
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./server:/app
+      - /app/node_modules
+    environment:
+      - MONGO_URI=${MONGO_URI}
+      - JWT_SECRET=${JWT_SECRET}
+      - ML_API_URL=http://ml-api:8000
+    depends_on:
+      - ml-api
+    command: npm run dev
+
+  client:
+    build: ./client
+    container_name: soil_react_client
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./client:/app
+      - /app/node_modules
+    environment:
+      - VITE_API_URL=http://localhost:5000/api
+      - VITE_ML_URL=http://localhost:8000
+    depends_on:
+      - server
+    command: npm run dev -- --host
